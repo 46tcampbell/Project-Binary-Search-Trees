@@ -55,4 +55,30 @@ export class Tree {
       }
     }
   }
+
+  deleteItem(value, root = this.root) {
+    if (root === null) return root;
+
+    if (value > root.data) {
+      root.right = this.deleteItem(value, root.right);
+    } else if (value < root.data) {
+      root.left = this.deleteItem(value, root.left);
+    } else {
+      if (root.left === null) return root.right;
+      if (root.right === null) return root.left;
+
+      const successorNode = this.getSuccessor(root);
+      root.data = successorNode.data;
+      root.right = this.deleteItem(successorNode.data, root.right);
+    }
+    return root;
+  }
+
+  getSuccessor(currentNode) {
+    currentNode = currentNode.right;
+    while (currentNode !== null && currentNode.left !== null) {
+      currentNode = currentNode.left;
+    }
+    return currentNode;
+  }
 }
