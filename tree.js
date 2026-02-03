@@ -17,7 +17,17 @@ export class Tree {
     root.left = this.#buildTree(array, start, mid - 1);
     root.right = this.#buildTree(array, mid + 1, end);
 
-    console.log(root);
+    // console.log(root);
     return root;
+  }
+
+  includes(value, root = this.root) {
+    if (root === null) return false;
+    if (value === root.data) return true;
+    if (value > root.data) {
+      return this.includes(value, root.right);
+    } else {
+      return this.includes(value, root.left);
+    }
   }
 }
