@@ -19,3 +19,11 @@ export const prettyPrint = (node, prefix = '', isLeft = true) => {
   console.log(`${prefix}${isLeft ? '└── ' : '┌── '}${node.data}`);
   prettyPrint(node.left, `${prefix}${isLeft ? '    ' : '│   '}`, true);
 };
+
+export function doubleNum(num) {
+  console.log(num * 2);
+}
+
+export function log(item) {
+  console.log(item);
+}

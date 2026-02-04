@@ -1,4 +1,5 @@
 import { Node } from './node.js';
+import { Queue } from './queue.js';
 
 export class Tree {
   constructor(array, start, end) {
@@ -81,5 +82,30 @@ export class Tree {
       currentNode = currentNode.left;
     }
     return currentNode;
+  }
+
+  levelOrderForEach(callback, root = this.root) {
+    if (!callback) {
+      throw new Error('Callback Function is required, Ya Silly Sally');
+    }
+
+    if (root === null) return root;
+
+    const nodeQueue = new Queue();
+    nodeQueue.enqueue(root);
+
+    console.log(nodeQueue);
+    while (nodeQueue.front < nodeQueue.end) {
+      if (nodeQueue.queue[nodeQueue.front].left !== null) {
+        nodeQueue.enqueue(nodeQueue.queue[nodeQueue.front].left);
+      }
+      // console.log(nodeQueue);
+      if (nodeQueue.queue[nodeQueue.front].right !== null) {
+        nodeQueue.enqueue(nodeQueue.queue[nodeQueue.front].right);
+      }
+      // console.log(nodeQueue);
+      callback(nodeQueue.dequeue().data);
+    }
+    console.log(nodeQueue);
   }
 }
