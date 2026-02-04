@@ -38,18 +38,19 @@ export class Tree {
       return this.root;
     }
     // Below is to just return immediately if the value is already in the tree
-    if (this.includes(value)) return;
+    if (value === root.data)
+      return console.log(`Value: ${root.data}. It's already in here, Bruh`);
     if (value > root.data) {
       if (root.right === null) {
         root.right = new Node(value);
-        return;
+        return console.log(`New node added with value: ${root.right.data}`);
       } else {
         return this.insert(value, root.right);
       }
     } else {
       if (root.left === null) {
         root.left = new Node(value);
-        return;
+        return console.log(`New node added with value: ${root.left.data}`);
       } else {
         return this.insert(value, root.left);
       }
