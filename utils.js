@@ -21,9 +21,9 @@ export const prettyPrint = (node, prefix = '', isLeft = true) => {
 };
 
 export function doubleNum(num) {
-  console.log(num * 2);
+  return console.log(num * 2);
 }
 
 export function log(item) {
-  console.log(item);
+  return console.log(item);
 }

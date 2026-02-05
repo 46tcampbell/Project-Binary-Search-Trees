@@ -94,7 +94,7 @@ export class Tree {
     const nodeQueue = new Queue();
     nodeQueue.enqueue(root);
 
-    console.log(nodeQueue);
+    // console.log(nodeQueue);
     while (nodeQueue.front < nodeQueue.end) {
       if (nodeQueue.queue[nodeQueue.front].left !== null) {
         nodeQueue.enqueue(nodeQueue.queue[nodeQueue.front].left);
@@ -106,6 +106,31 @@ export class Tree {
       // console.log(nodeQueue);
       callback(nodeQueue.dequeue().data);
     }
-    console.log(nodeQueue);
+    // console.log(nodeQueue);
+  }
+
+  levelOrderForEachRecur(callback, root = this.root, nodeQueue = new Queue()) {
+    if (!callback) {
+      throw new Error('Callback Function is required, Ya Silly Sally');
+    }
+
+    if (root === null) return;
+
+    if (root === this.root) {
+      nodeQueue.enqueue(root);
+    }
+    if (nodeQueue.queue[nodeQueue.front].left !== null) {
+      nodeQueue.enqueue(nodeQueue.queue[nodeQueue.front].left);
+    }
+    if (nodeQueue.queue[nodeQueue.front].right !== null) {
+      nodeQueue.enqueue(nodeQueue.queue[nodeQueue.front].right);
+    }
+    callback(nodeQueue.dequeue().data);
+    if (nodeQueue.front >= nodeQueue.end) return;
+    return this.levelOrderForEachRecur(
+      callback,
+      nodeQueue.queue[nodeQueue.front],
+      nodeQueue
+    );
   }
 }

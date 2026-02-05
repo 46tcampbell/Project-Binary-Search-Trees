@@ -38,6 +38,9 @@ const tree = new Tree(sortedAndUniqueArray);
 // console.log(queue.front);
 // console.log(queue.queue[0].left);
 
+tree.levelOrderForEachRecur(doubleNum);
+tree.levelOrderForEachRecur(log);
+console.log('--------------------------');
 tree.levelOrderForEach(doubleNum);
 tree.levelOrderForEach(log);
 // console.log(sortedAndUniqueArray);
@@ -63,7 +66,7 @@ tree.levelOrderForEach(log);
 // console.log(tree.includes(92));
 // console.log(tree.includes(2));
 // console.log(tree.includes(22));
-console.log(prettyPrint(tree.root));
+// console.log(prettyPrint(tree.root));
 
 // console.log(tree.insert(8));
 // console.log(tree.insert(2));
