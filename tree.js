@@ -174,17 +174,22 @@ export class Tree {
     }
 
     if (value === root.data) {
-      let count = 0;
-      let currentNode = root;
-      while (currentNode.right !== null || currentNode.left !== null) {
-        if (currentNode.right !== null) {
-          currentNode = currentNode.right;
-        } else {
-          currentNode = currentNode.left;
+      let countRightSubtree = 0;
+      let countLeftSubtree = 0;
+      let currentRightNode = root;
+      let currentLeftNode = root;
+      while (currentRightNode.right !== null || currentLeftNode.left !== null) {
+        if (currentRightNode.right !== null) {
+          currentRightNode = currentRightNode.right;
+          countRightSubtree++;
         }
-        count++;
+        if (currentLeftNode.left !== null) {
+          currentLeftNode = currentLeftNode.left;
+          countLeftSubtree++;
+        }
       }
-      return count;
+      let height = Math.max(countRightSubtree, countLeftSubtree);
+      return height;
     }
   }
 
@@ -198,5 +203,33 @@ export class Tree {
       return this.depth(value, root.left, count);
     }
     if (value === root.data) return count;
+  }
+
+  findHeightUtil(value, root = this.root, height) {
+    if (!root) return -1;
+
+    // Store the maximum height of left and right subtree
+    let leftHeight = this.findHeightUtil(value, root.left, height);
+    let rightHeight = this.findHeightUtil(value, root.right, height);
+
+    // Update height of the current node
+    let ans = Math.max(leftHeight, rightHeight) + 1;
+
+    // If current node is the required node, update height
+    if (root.data === value) height.value = ans;
+
+    return ans;
+  }
+
+  // Function to find height of a given node
+  findHeight(value, root = this.root) {
+    let height = { value: -1 }; // Using an object
+    // to store height by reference
+    this.findHeightUtil(value, root, height);
+    if (height.value === -1) {
+      return undefined;
+    } else {
+      return height.value;
+    }
   }
 }
