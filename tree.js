@@ -167,4 +167,29 @@ export class Tree {
     this.postOrderForEach(callback, root.right);
     callback(root.data);
   }
+
+  height(value, root = this.root) {
+    if (root === null) return console.log(undefined);
+    if (value > root.data) {
+      return this.height(value, root.right);
+    }
+
+    if (value < root.data) {
+      return this.height(value, root.left);
+    }
+
+    if (value === root.data) {
+      let count = 0;
+      let currentNode = root;
+      while (currentNode.right !== null || currentNode.left !== null) {
+        if (currentNode.right !== null) {
+          currentNode = currentNode.right;
+        } else {
+          currentNode = currentNode.left;
+        }
+        count++;
+      }
+      return console.log(`Count:${count} for Value:${value}`);
+    }
+  }
 }
