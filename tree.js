@@ -18,7 +18,6 @@ export class Tree {
     root.left = this.#buildTree(array, start, mid - 1);
     root.right = this.#buildTree(array, mid + 1, end);
 
-    // console.log(root);
     return root;
   }
 
@@ -94,19 +93,15 @@ export class Tree {
     const nodeQueue = new Queue();
     nodeQueue.enqueue(root);
 
-    // console.log(nodeQueue);
     while (nodeQueue.front < nodeQueue.end) {
       if (nodeQueue.queue[nodeQueue.front].left !== null) {
         nodeQueue.enqueue(nodeQueue.queue[nodeQueue.front].left);
       }
-      // console.log(nodeQueue);
       if (nodeQueue.queue[nodeQueue.front].right !== null) {
         nodeQueue.enqueue(nodeQueue.queue[nodeQueue.front].right);
       }
-      // console.log(nodeQueue);
       callback(nodeQueue.dequeue().data);
     }
-    // console.log(nodeQueue);
   }
 
   levelOrderForEachRecur(callback, root = this.root, nodeQueue = new Queue()) {
@@ -169,7 +164,7 @@ export class Tree {
   }
 
   height(value, root = this.root) {
-    if (root === null) return console.log(undefined);
+    if (root === null) return undefined;
     if (value > root.data) {
       return this.height(value, root.right);
     }
@@ -189,7 +184,19 @@ export class Tree {
         }
         count++;
       }
-      return console.log(`Count:${count} for Value:${value}`);
+      return count;
     }
+  }
+
+  depth(value, root = this.root, count = 0) {
+    if (root === null) return undefined;
+    if (value > root.data) {
+      count++;
+      return this.depth(value, root.right, count);
+    } else if (value < root.data) {
+      count++;
+      return this.depth(value, root.left, count);
+    }
+    if (value === root.data) return count;
   }
 }
