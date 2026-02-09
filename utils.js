@@ -27,3 +27,15 @@ export function doubleNum(num) {
 export function log(item) {
   return console.log(item);
 }
+
+export function createArrayOfRandomNumbers(numberOfArrayIndexes) {
+  if (numberOfArrayIndexes <= 0 || numberOfArrayIndexes > 100) {
+    throw new Error('Please choose a number between 1 and 100');
+  }
+  const array = [];
+  for (let i = 0; i <= numberOfArrayIndexes; i++) {
+    const num = Math.floor(Math.random() * 100) + 1;
+    array.push(num);
+  }
+  return array;
+}
