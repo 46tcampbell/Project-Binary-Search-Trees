@@ -4,7 +4,7 @@ import { sortAndUniqueArray, prettyPrint, doubleNum, log } from './utils.js';
 import { Queue } from './queue.js';
 
 // const array = [1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324];
-const array = [1, 2, 3, 4, 5];
+const array = [1, 2, 3];
 // const array = [
 //   1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
 // ];
@@ -54,19 +54,13 @@ const tree = new Tree(sortedAndUniqueArray);
 // console.log('--------------------------');
 // tree.postOrderForEach(log);
 // tree.postOrderForEach(doubleNum);
-console.log(tree.height(5));
+console.log(tree.height(1));
 console.log(tree.height(2));
-console.log(tree.height(7));
+console.log(tree.height(3));
 console.log(tree.height(55));
 console.log(tree.height(-1));
 console.log(tree.height(100));
 console.log('--------------------------');
-console.log(tree.findHeight(3));
-console.log(tree.findHeight(1));
-console.log(tree.findHeight(4));
-console.log(tree.findHeight(5));
-console.log(tree.findHeight(2));
-console.log(tree.findHeight(100));
 // console.log(tree.depth(5));
 // console.log(tree.depth(15));
 // console.log(tree.depth(2));

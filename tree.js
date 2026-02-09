@@ -163,35 +163,35 @@ export class Tree {
     callback(root.data);
   }
 
-  height(value, root = this.root) {
-    if (root === null) return undefined;
-    if (value > root.data) {
-      return this.height(value, root.right);
-    }
+  // height(value, root = this.root) {
+  //   if (root === null) return undefined;
+  //   if (value > root.data) {
+  //     return this.height(value, root.right);
+  //   }
 
-    if (value < root.data) {
-      return this.height(value, root.left);
-    }
+  //   if (value < root.data) {
+  //     return this.height(value, root.left);
+  //   }
 
-    if (value === root.data) {
-      let countRightSubtree = 0;
-      let countLeftSubtree = 0;
-      let currentRightNode = root;
-      let currentLeftNode = root;
-      while (currentRightNode.right !== null || currentLeftNode.left !== null) {
-        if (currentRightNode.right !== null) {
-          currentRightNode = currentRightNode.right;
-          countRightSubtree++;
-        }
-        if (currentLeftNode.left !== null) {
-          currentLeftNode = currentLeftNode.left;
-          countLeftSubtree++;
-        }
-      }
-      let height = Math.max(countRightSubtree, countLeftSubtree);
-      return height;
-    }
-  }
+  //   if (value === root.data) {
+  //     let countRightSubtree = 0;
+  //     let countLeftSubtree = 0;
+  //     let currentRightNode = root;
+  //     let currentLeftNode = root;
+  //     while (currentRightNode.right !== null || currentLeftNode.left !== null) {
+  //       if (currentRightNode.right !== null) {
+  //         currentRightNode = currentRightNode.right;
+  //         countRightSubtree++;
+  //       }
+  //       if (currentLeftNode.left !== null) {
+  //         currentLeftNode = currentLeftNode.left;
+  //         countLeftSubtree++;
+  //       }
+  //     }
+  //     let height = Math.max(countRightSubtree, countLeftSubtree);
+  //     return height;
+  //   }
+  // }
 
   depth(value, root = this.root, count = 0) {
     if (root === null) return undefined;
@@ -222,7 +222,7 @@ export class Tree {
   }
 
   // Function to find height of a given node
-  findHeight(value, root = this.root) {
+  height(value, root = this.root) {
     let height = { value: -1 }; // Using an object
     // to store height by reference
     this.findHeightUtil(value, root, height);
