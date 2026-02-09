@@ -232,4 +232,44 @@ export class Tree {
       return height.value;
     }
   }
+
+  isBalanced() {
+    return this.inOrderForEachBalanced(this.isBalancedUtil);
+  }
+
+  isBalancedUtil(root = this.root) {
+    let countRightSubtree = 0;
+    let countLeftSubtree = 0;
+    let currentRightNode = root;
+    let currentLeftNode = root;
+    while (currentRightNode !== null && currentRightNode.right !== null) {
+      currentRightNode = currentRightNode.right;
+      countRightSubtree++;
+    }
+    while (currentLeftNode !== null && currentLeftNode.left !== null) {
+      currentLeftNode = currentLeftNode.left;
+      countLeftSubtree++;
+    }
+    if (Math.abs(countRightSubtree - countLeftSubtree) > 1) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+
+  inOrderForEachBalanced(callback, root = this.root) {
+    let isBalanced = true;
+    if (!callback) {
+      throw new Error('Callback Function is required, Ya Silly Sally');
+    }
+
+    if (root === null) return;
+
+    this.inOrderForEachBalanced(callback, root.left);
+    if (callback(root) === false) {
+      isBalanced = false;
+    }
+    this.inOrderForEachBalanced(callback, root.right);
+    return isBalanced;
+  }
 }
