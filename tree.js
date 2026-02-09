@@ -272,4 +272,10 @@ export class Tree {
     this.inOrderForEachBalanced(callback, root.right);
     return isBalanced;
   }
+
+  rebalance() {
+    const array = [];
+    this.inOrderForEach(array.push.bind(array));
+    this.root = this.#buildTree(array);
+  }
 }
